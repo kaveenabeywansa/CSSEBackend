@@ -10,7 +10,8 @@ var Controller = function () {
                 lname: data.lname,
                 phone: data.phone,
                 email: data.email,
-                password: data.password
+                password: data.password,
+                amount: data.amount
             });
             user.save().then(function () {
                 resolve({ status: 200, message: "User Added Successfully..... !" });
