@@ -9,7 +9,7 @@ app.use(cors());
 app.use('/',Routes);
 
  
-app.listen(3001,'localhost',function(err) {
+app.listen(3001,'0.0.0.0',function(err) {
     if(err){
         console.log(err);
         process.exit(-1);
