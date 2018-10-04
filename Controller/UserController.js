@@ -41,7 +41,7 @@ var Controller = function () {
 
     this.updateUser = function (nic, body) {
         return new Promise(function (resolve, reject) {
-            UserSchema.update({ nic: nic }, body).then(function (data) {
+            UserSchema.updateOne({ nic: nic }, body).then(function (data) {
                 resolve({ status: 200, userUpdated: data });
             }).catch(function (err) {
                 reject({ status: 404, message: "NIC Not Found......!" });
