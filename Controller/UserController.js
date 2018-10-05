@@ -1,17 +1,23 @@
 var mongoose = require('../DBSchema/DBConfig');
-var UserSchema = mongoose.model('User');
+var UserSchema = mongoose.model('Customer');
 
 var Controller = function () {
     this.addUser = function (data) {
         return new Promise(function (resolve, reject) {
             var user = new UserSchema({
-                nic: data.nic,
-                fname: data.fname,
-                lname: data.lname,
-                phone: data.phone,
-                email: data.email,
-                password: data.password,
-                amount: data.amount
+                First_Name: data.First_Name,
+                Last_Name: data.Last_Name,
+                NIC_Passport_No: data.NIC_Passport_No,
+                DateOfBirth: data.DateOfBirth,
+                citizenship: data.citizenship,
+                Deposit_Amount: data.Deposit_Amount,
+                Username: data.Username,
+                Password: data.Password,
+                Security_Question: data.Security_Question,
+                Security_Answer: data.Security_Answer,
+                Email_Address: data.Email_Address,
+                Address: data.Address,
+                Mobile: data.Mobile
             });
             user.save().then(function () {
                 resolve({ status: 200, message: "User Added Successfully..... !" });
@@ -29,9 +35,9 @@ var Controller = function () {
             })
         })
     }
-    this.searchUser = function (nic) {
+    this.searchUser = function (NIC_Passport_No) {
         return new Promise(function (resolve, reject) {
-            UserSchema.find({ nic: nic }).exec().then(function (data) {
+            UserSchema.findOne({ NIC_Passport_No: NIC_Passport_No }).exec().then(function (data) {
                 resolve({ status: 200, userSearch: data });
             }).catch(function (err) {
                 reject({ status: 404, message: "NIC Not Found......!" });
@@ -39,9 +45,9 @@ var Controller = function () {
         })
     }
 
-    this.updateUser = function (nic, body) {
+    this.updateUser = function (NIC_Passport_No, body) {
         return new Promise(function (resolve, reject) {
-            UserSchema.updateOne({ nic: nic }, body).then(function (data) {
+            UserSchema.updateOne({ NIC_Passport_No: NIC_Passport_No }, body).then(function (data) {
                 resolve({ status: 200, userUpdated: data });
             }).catch(function (err) {
                 reject({ status: 404, message: "NIC Not Found......!" });
